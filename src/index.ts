@@ -6,6 +6,7 @@ import morgan from "morgan";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 
+import db from "../models/index";
 import API from "./routes/index";
 
 import * as bip39 from "bip39";
@@ -75,6 +76,11 @@ app.use(
   })
 );
 app.use("/api", API);
+
+db.sequelize.sync({ force: false }).then(() => {
+  console.log("db connected");
+});
+
 app.listen(app.get("port"), () => {
   console.log("서버 열음");
 });
