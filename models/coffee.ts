@@ -11,8 +11,8 @@ export default class coffee extends Model {
     return coffee.init(
       {
         fileName: { type: DataTypes.STRING, allowNull: false },
-        productType: { type: DataTypes.STRING, allowNull: false },
-        producName: { type: DataTypes.STRING, allowNull: false, unique: true },
+        productKind: { type: DataTypes.STRING, allowNull: false },
+        productName: { type: DataTypes.STRING, allowNull: false, unique: true },
         price: { type: DataTypes.INTEGER, allowNull: false },
         info: { type: DataTypes.TEXT, allowNull: false },
       },
