@@ -1,9 +1,22 @@
 import { Router } from "express";
+import multer from "multer";
+
 import db from "../../../models/index";
 
 const router = Router();
 
-router.post("/product", async (req, res) => {
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "uploads/");
+  },
+  filename: function (req, file, cb) {
+    cb(null, Date.now() + "-" + file.originalname);
+  },
+});
+const upload = multer({
+  storage: storage,
+});
+router.post("/product", upload.single("file"), async (req, res) => {
   const { image, productType, productKind, name, price, info } = req.body;
 
   if (productType == "커피") {
@@ -15,6 +28,7 @@ router.post("/product", async (req, res) => {
       info: info,
     });
   }
+
   res.send(req.body);
 });
 

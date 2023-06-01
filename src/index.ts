@@ -49,6 +49,7 @@ import Wallet from "ethereumjs-wallet";
 dotenv.config();
 
 const app: Express = express();
+
 app.set("port", process.env.PORT || 8080);
 app.use("/", express.static(path.join(__dirname, "build")));
 app.use(cors({ origin: true, credentials: true }));
