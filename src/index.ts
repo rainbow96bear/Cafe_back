@@ -52,6 +52,7 @@ const app: Express = express();
 
 app.set("port", process.env.PORT || 8080);
 app.use("/", express.static(path.join(__dirname, "build")));
+app.use("/imgsrc", express.static("uploads"));
 app.use(cors({ origin: true, credentials: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

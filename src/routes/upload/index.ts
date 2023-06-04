@@ -17,11 +17,11 @@ const upload = multer({
   storage: storage,
 });
 router.post("/product", upload.single("file"), async (req, res) => {
-  const { image, productType, productKind, name, price, info } = req.body;
+  const { productType, productKind, name, price, info } = req.body;
 
   if (productType == "커피") {
     await db.Coffee.create({
-      fileName: image.path,
+      fileName: req.file?.filename,
       productKind: productKind,
       productName: name,
       price: Number(price),
@@ -29,7 +29,7 @@ router.post("/product", upload.single("file"), async (req, res) => {
     });
   }
 
-  res.send(req.body);
+  res.send({ status: 200, message: "등록이 성공하였습니다." });
 });
 
 export default router;

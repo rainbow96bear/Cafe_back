@@ -1,10 +1,7 @@
 import { Sequelize } from "sequelize";
-import process from "process";
 
 import { config } from "../config/config";
 import Coffee from "../models/coffee";
-
-const env = process.env.NODE_ENV || "development";
 
 const db: any = { Coffee };
 
