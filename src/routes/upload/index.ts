@@ -18,9 +18,16 @@ const upload = multer({
 });
 router.post("/product", upload.single("file"), async (req, res) => {
   const { productType, productKind, name, price, info } = req.body;
-
   if (productType == "커피") {
     await db.Coffee.create({
+      fileName: req.file?.filename,
+      productKind: productKind,
+      productName: name,
+      price: Number(price),
+      info: info,
+    });
+  } else if (productType == "굿즈") {
+    await db.Goods.create({
       fileName: req.file?.filename,
       productKind: productKind,
       productName: name,

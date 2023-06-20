@@ -2,8 +2,9 @@ import { Sequelize } from "sequelize";
 
 import { config } from "../config/config";
 import Coffee from "../models/coffee";
+import Goods from "../models/goods";
 
-const db: any = { Coffee };
+const db: any = { Coffee, Goods };
 
 const sequelize = new Sequelize(
   config.development.database,
@@ -23,6 +24,7 @@ Object.keys(db).forEach((modelName) => {
 });
 
 db.Pool = Coffee.initModel(sequelize);
+db.Pool = Goods.initModel(sequelize);
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;

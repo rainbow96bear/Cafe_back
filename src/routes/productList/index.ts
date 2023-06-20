@@ -11,6 +11,9 @@ router.get("/getList", async (req, res) => {
     case "coffee":
       result = await db.Coffee.findAll();
       break;
+    case "goods":
+      result = await db.Goods.findAll();
+      break;
   }
   res.send(result);
 });
