@@ -11,6 +11,7 @@ export default class goods extends Model {
     return goods.init(
       {
         fileName: { type: DataTypes.STRING, allowNull: false },
+        productType: { type: DataTypes.STRING, allowNull: false },
         productKind: { type: DataTypes.STRING, allowNull: false },
         productName: { type: DataTypes.STRING, allowNull: false, unique: true },
         price: { type: DataTypes.INTEGER, allowNull: false },
