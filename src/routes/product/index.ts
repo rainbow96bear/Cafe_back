@@ -16,7 +16,7 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage,
 });
-router.post("/upload", upload.single("file"), async (req, res) => {
+router.post("/admin", upload.single("file"), async (req, res) => {
   const { productType, productKind, name, price, info } = req.body;
   if (productType == "커피") {
     await db.Coffee.create({
@@ -40,7 +40,7 @@ router.post("/upload", upload.single("file"), async (req, res) => {
 
   res.send({ status: 200, message: "등록이 성공하였습니다." });
 });
-router.get("/getList", async (req, res) => {
+router.get("/admin", async (req, res) => {
   const { product } = req.query;
   let result: any;
   switch (product) {
@@ -54,7 +54,7 @@ router.get("/getList", async (req, res) => {
   res.send(result);
 });
 
-router.delete("/delete", async (req, res) => {
+router.delete("/admin", async (req, res) => {
   const { product } = req.query;
   const { productID } = req.body;
   let result: any;
@@ -74,7 +74,7 @@ router.delete("/delete", async (req, res) => {
   }
 });
 
-router.put("/modify", upload.single("file"), async (req, res) => {
+router.put("/admin", upload.single("file"), async (req, res) => {
   const { productType, productKind, name, price, info, productID } = req.body;
   if (productType == "커피") {
     await db.Coffee.update(
