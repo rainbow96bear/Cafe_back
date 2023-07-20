@@ -1,14 +1,15 @@
 import { Model, DataTypes, Sequelize } from "sequelize";
 
-export default class coffee extends Model {
+export default class Products extends Model {
   public fileName!: string;
   public productType!: string;
+  public productKind!: string;
   public producName!: string;
   public price!: number;
   public info!: Text;
 
   public static initModel(sequelize: Sequelize) {
-    return coffee.init(
+    return Products.init(
       {
         fileName: { type: DataTypes.STRING, allowNull: false },
         productType: { type: DataTypes.STRING, allowNull: false },
@@ -19,7 +20,7 @@ export default class coffee extends Model {
       },
       {
         sequelize,
-        modelName: "Coffee",
+        modelName: "Products",
         collate: "utf8_general_ci",
       }
     );
